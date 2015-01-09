@@ -5,9 +5,9 @@ var rewireify = require("../lib/index");
 
 console.log("Building test bundle...");
 
-browserify("./template/module.js", {basedir: __dirname})
+browserify("./template/module.js", {basedir: __dirname, standalone: 'test-bundle'})
   .transform(rewireify)
-  .bundle({ standalone: "test-bundle" }, function(err, output) {
+  .bundle(function(err, output) {
     if (err) {
       console.error(err);
     }
