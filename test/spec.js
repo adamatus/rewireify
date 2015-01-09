@@ -74,6 +74,22 @@ vows.describe("Getters and setters").addBatch({
   },
 
   "Dependencies": {
+		"will be ignored if requested": {
+			topic: function() {
+				return function() { fixture.__get__("ignoredDependency").__get__("test"); };
+			},
+			"should throw an error if access is attempted": function(topic) {
+				assert.throws(topic, TypeError);
+			}
+		},
+		"will not ignore files not on ignore list": {
+			topic: function() {
+				return fixture.__get__("privateDependency").__get__("test");
+			},
+			"should throw an error if access is attempted": function(topic) {
+				assert.equal(topic, "reachable");
+			}
+		},
     "can be inspected": {
       "with a spy": {
         topic: function() {

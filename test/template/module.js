@@ -10,6 +10,8 @@ var modifyEnMasseA = modifyEnMasseB = "I will be changed";
 
 var privateDependency = require("./dependency");
 
+var ignoredDependency = require("./ignored-dependency.js");
+
 exports.methodUsingDependency = function() {
   return privateDependency.exampleMethod();
 };
